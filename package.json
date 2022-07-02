@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "devDependencies": {
+    "lerna": "^5.1.6"
+  },
+  "dependencies": {
+    "lint-staged": "^13.0.3"
+  }
+}

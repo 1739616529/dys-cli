@@ -1,0 +1,13 @@
+{
+  "packages": ["packages/*"],
+  "lint-staged": {
+    "*.{js,vue}": "eslint --fix",
+    "packages/**/bin/*": "eslint --fix"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verifyCommitMsg.js"
+  },
+  "useNx": false,
+  "version": "0.0.0"
+}
