@@ -1,13 +1,7 @@
 {
-  "packages": ["packages/*"],
-  "lint-staged": {
-    "*.{js,vue}": "eslint --fix",
-    "packages/**/bin/*": "eslint --fix"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verifyCommitMsg.js"
-  },
-  "useNx": false,
-  "version": "0.0.0"
+  "npmClient": "npm",
+  "useWorkspaces": true,
+  "packages": ["./packages/@dys/cli"],
+  "version": "5.1.6",
+  "cacheDir": ".changelog"
 }

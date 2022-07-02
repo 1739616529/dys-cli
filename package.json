@@ -1,9 +1,19 @@
 {
   "private": true,
+  "workspaces": [
+    "packages/@dys/*"
+  ],
   "devDependencies": {
-    "lerna": "^5.1.6"
-  },
-  "dependencies": {
+    "lerna": "^5.1.6",
     "lint-staged": "^13.0.3"
-  }
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint --fix",
+    "packages/**/bin/*": "eslint --fix"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verifyCommitMsg.js"
+  },
+  "dependencies": {}
 }
