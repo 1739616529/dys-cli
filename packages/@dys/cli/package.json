@@ -1,0 +1,32 @@
+{
+	"name": "@dinyaso/cli",
+	"version": "1.0.0",
+	"main": "index.js",
+	"bin": {
+		"dys": "bin/index.js"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"dependencies": {
+		"chalk": "^4.1.2",
+		"commander": "^9.3.0",
+		"fs-extra": "^10.1.0",
+		"inquirer": "^8.0.0",
+		"listr2": "^4.0.5",
+		"path": "^0.12.7",
+		"shelljs": "^0.8.5"
+	},
+	"directories": {
+		"doc": "docs",
+		"lib": "lib"
+	},
+	"description": ""
+}
