@@ -1,2 +1,2 @@
 function docs() {}
-module.exports = docs
+module.exports = docs;
