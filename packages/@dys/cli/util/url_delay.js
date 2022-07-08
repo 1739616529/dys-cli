@@ -1,17 +1,16 @@
-const https = require("https");
+const request = require("request");
 function url_delay(url) {
+    const tmpl = { url, msg: "ok", ping: 0, ok: false };
     return new Promise((resolve) => {
-        const tmpl = { ping: 0, ok: false };
-        setTimeout(() => {
+        request({ url, time: true, timeout: 3000 }, (err, res) => {
+            if (err) {
+                tmpl.msg = err;
+                resolve(tmpl);
+                return;
+            }
+            tmpl.ping = res.elapsedTime || 0;
+            tmpl.ok = true;
             resolve(tmpl);
-        }, 3000);
-        const start_time = new Date().getTime();
-        https.get(url, { timeout: 1000 }, (res) => {
-            res.on("data", () => {});
-            res.on("end", () => {
-                tmpl.ping = new Date().getTime() - start_time;
-                tmpl.ok = true;
-            });
         });
     });
 }
