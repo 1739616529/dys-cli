@@ -17,7 +17,8 @@
         "link": "esno scripts/cliLink",
         "--- dev build 命令需要带上 需要运行的包 比如 cli 就需要 npm run dev cli": "",
         "dev": "esno scripts/dev.ts",
-        "build:docs": "esno scripts/build.ts",
+        "build": "esno scripts/build.ts",
+        "publish": "esno scripts/publish.ts",
         "postinstall": "npm run link"
     },
     "gitHooks": {
