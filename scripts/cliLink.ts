@@ -1,7 +1,10 @@
-const { exec, cd, rm, echo } = require("shelljs");
-const npm_conf = require("npm-conf")();
+import { exec, cd, rm, echo } from "shelljs";
+// @ts-ignore
+import npm_conf from "npm-conf";
 const cwd = process.cwd();
-const cli_dir = `${cwd}/packages/@dys/cli`;
+import { pack_dir } from "./config";
+
+const cli_dir = `${cwd}/${pack_dir}/cli`;
 const cli_pkg = require(`${cli_dir}/package.json`);
 
 cd(cli_dir);
