@@ -10,6 +10,7 @@ module.exports = {
     cwd: process.cwd(),
     version: require("./package.json").version,
     tmpDir: get_tmp_dir(),
+    serveProt: 9486,
     gitStorm: {
         baseUrl: "https://github.com/1739616529",
         ts: {
