@@ -16,12 +16,12 @@ export const cargo_build: CARGO_BUILD = {
         release: "",
     },
     linux: {
-        order: "cargo build --release --target=x86_64-unknown-linux-musl",
+        order: "cargo build --release",
         target: "x86_64-unknown-linux-musl",
         release: "",
     },
     darwin: {
-        order: "cargo build --release --target=x86_64-apple-darwin",
+        order: "cargo build --release",
         target: "x86_64-apple-darwin",
         release: "",
     },
