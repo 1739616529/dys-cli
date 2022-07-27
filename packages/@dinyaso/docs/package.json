@@ -2,17 +2,16 @@
     "name": "@dinyaso/docs",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        ":": "vitepress",
-        "dev": "tauri dev",
-        "build": "tauri build"
+        "dev": "vuepress dev",
+        "serve": "vuepress serve",
+        "build": "vuepress build"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "dependencies": {
-        "vitepress": "^1.0.0-alpha.4"
+    "devDependencies": {
+        "vuepress": "^2.0.0-beta.49"
     }
 }
