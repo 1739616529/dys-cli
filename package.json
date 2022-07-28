@@ -10,22 +10,21 @@
         "typescript": "^4.7.4"
     },
     "scripts": {
-        "安装请运行 i 脚本": "",
-        "i": "npm i && lerna bootstrap",
+        "--- 安装请运行 i 脚本 npm run i": "",
+        "i": "npm i && esno scripts/install.ts && npm run link",
+        "install": "npm run i",
         "link": "esno scripts/cliLink",
-        "--- dev build 命令需要带上 需要运行的包 比如 cli 就需要 npm run dev cli": "",
+        "--- dev/build 命令需要带上 运行的项目的文件夹名 比如 cli 就需要 npm run dev cli": "",
         "--- 请使用  npm run / yarn run / pnpm run 运行脚本 ": "",
         "dev": "esno scripts/dev.ts",
         "build": "esno scripts/build.ts",
-        "publish": "esno scripts/publish.ts",
-        "postinstall": "npm run link"
+        "publish": "esno scripts/publish.ts"
     },
     "gitHooks": {
         "commit-msg": "esno scripts/verifyCommitMsg.ts"
     },
     "dependencies": {
         "esno": "^0.16.3",
-        "minimist": "^1.2.6",
-        "vitepress": "^1.0.0-alpha.4"
+        "minimist": "^1.2.6"
     }
 }
