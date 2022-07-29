@@ -12,7 +12,7 @@ use winit::window::WindowBuilder;
 
 fn main() {
     let event_loop = EventLoop::new();
-    let open_url = std::env::args().nth(1).expect("出错啦");
+    let open_url = std::env::args().nth(1).expect("传入要加载的 url 啊 叼毛 ");
     let window = WindowBuilder::new()
         .with_title("docs cli")
         .with_inner_size(Size::Logical((800, 600).into()))
