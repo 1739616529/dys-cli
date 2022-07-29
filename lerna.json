@@ -1,6 +1,6 @@
 {
     "npmClient": "npm",
-    "packages": ["./packages/@dinyaso/cli", "./packages/@dinyaso/docs", "."],
+    "packages": ["./packages/@dinyaso/cli", "./packages/@dinyaso/docs"],
     "version": "5.1.6",
     "cacheDir": ".changelog"
 }
