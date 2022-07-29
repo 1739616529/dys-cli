@@ -6,7 +6,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-web-view = "0.7.3"
+webview2 = "0.1.4"
+once_cell = "1.13.0"
+winapi = "0.3.9"
+winit = "0.27.0"
 
 [target.x86_64-pc-windows-msvc]
 rustflags = ["-C", "target-feature=+crt-static"]
