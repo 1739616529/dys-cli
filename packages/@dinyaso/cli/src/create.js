@@ -6,6 +6,7 @@ const { join } = require("path");
 const { ensureDirSync, ensureFileSync } = require("fs-extra");
 const { dir_ok, get_github_storm, download_file, uncompress } = require("../util/tools");
 const { mv } = require("shelljs");
+const chalk = require("chalk");
 async function create_tmpl() {
     const prompt_lsit = [
         {
@@ -57,13 +58,15 @@ async function create_tmpl() {
     inquirer.prompt(prompt_lsit).then(async (res) => {
         // 获取  项目仓库信息
         const { path, fileName, storm_name } = get_github_storm(res);
-
         // 创建目录
         ensureDirSync(tmpDir);
         const file_path = join(tmpDir, fileName);
 
         // 如果不存在 则下载
-        if (!ensureFileSync(file_path)) await download_file({ path, savePath: tmpDir, fileName });
+        if (!ensureFileSync(file_path))
+            await download_file({ path, savePath: tmpDir, fileName }).catch((err) => {
+                console.log(chalk.red("下载失败 请手动下载 :" + path));
+            });
 
         // 解压 到当前目录
         uncompress(file_path, cwd);
