@@ -3,21 +3,17 @@ const { exec } = require("child_process");
 const serve = require("../util/serve");
 const boxne = require("boxen");
 const chalk = require("chalk");
-const { serveProt } = require("../dysconfig");
-function docs() {
-    const webview_name = {
-        win32: "docs.exe",
-        darwin: "docs",
-        linux: "docs",
-    };
-    const webview = join(__dirname, "../docs/", webview_name[process.platform]);
-    const server = serve(serveProt, join(__dirname, "../docs/"));
+const { confirm_port } = require("../util/tools");
+const { docsProt, webviewPath } = require("../dysconfig");
+async function docs() {
+    const port = await confirm_port(docsProt);
+    const server = serve(port, join(__dirname, "../docs/"));
     process.on("exit", () => {
         server.close();
     });
 
-    const url = `http://127.0.0.1:${serveProt}`;
-    exec(`${webview} ${url}`);
+    const url = `http://127.0.0.1:${port}`;
+    exec(`${webviewPath} ${url}`);
     console.log(
         boxne("local url: " + chalk.blue(url), {
             textAlignment: "center",
