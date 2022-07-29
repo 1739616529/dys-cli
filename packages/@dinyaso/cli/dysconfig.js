@@ -1,30 +1,31 @@
-function get_tmp_dir() {
-    const dir = {
-        win32: process.env.LOCALAPPDATA,
-        linux: "/tmp",
-        darwin: "/tmp",
-    };
-    return `${dir[process.platform]}/dys`;
-}
+const { join } = require("path");
+const webview_name = {
+    win32: "webview.exe",
+    darwin: "webview",
+    linux: "webview",
+};
+const dir = {
+    win32: process.env.TEMP,
+    linux: "/tmp",
+    darwin: "/tmp",
+};
+
+const tmpDir = `${dir[process.platform]}/dys`;
 module.exports = {
     cwd: process.cwd(),
     version: require("./package.json").version,
-    tmpDir: get_tmp_dir(),
-    serveProt: 9486,
-    gitStorm: {
+    tmpDir,
+    docsProt: 9486,
+    webviewPath: join(__dirname, "./webview", webview_name[process.platform] || "webview.exe"),
+    github: {
         baseUrl: "https://github.com/1739616529",
-        ts: {
-            Vue: "",
+        gitStorm: {
+            Vue: "vue-vite-electron",
             React: "react-vite-electron",
-            Vanilla: "",
-            barch: "main",
+            Vanilla: "vanilla-vite-electron",
         },
-        js: {
-            Vue: "",
-            React: "",
-            Vanilla: "",
-            barch: "js",
-        },
+        ts: "main",
+        js: "vanilla",
     },
 
     origin: {
