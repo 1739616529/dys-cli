@@ -12,6 +12,10 @@ module.exports = function serve(port, dir) {
     const server = http.createServer((req, res) => {
         const url = format_url(req.url);
         if (url === false) return;
+
+        if (/\.html/.test(url)) res.setHeader("content-type", "text/html;charset=utf-8");
+        if (/\.js/.test(url))
+            res.setHeader("content-type", "application/javascript; charset=utf-8");
         fs.createReadStream(url).pipe(res);
     });
     server.listen(port);
