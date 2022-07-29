@@ -3,6 +3,7 @@ const { exec, which } = require("shelljs");
 const request = require("request");
 const config = require("../dysconfig");
 const admZip = require("adm-zip");
+const net = require("net");
 module.exports = {
     dir_ok(path) {
         try {
@@ -47,12 +48,11 @@ module.exports = {
 
     get_github_storm(option) {
         // react-vite-electron/archive/refs/heads/main.zip
-        const { gitStorm } = config;
-        const projects = gitStorm[option.typescript ? "ts" : "js"];
-        const storm_name = projects[option.frame];
-        const barch = projects.barch;
+        const { github } = config;
+        const storm_name = github.gitStorm[option.frame];
+        const barch = github[option.typescript ? "ts" : "js"];
         const file_name = `${storm_name}-${barch}.zip`;
-        const path = `${gitStorm.baseUrl}/${storm_name}/archive/refs/heads/${barch}.zip`;
+        const path = `${github.baseUrl}/${storm_name}/archive/refs/heads/${barch}.zip`;
 
         return {
             path,
@@ -64,10 +64,15 @@ module.exports = {
     download_file(option) {
         const { path, savePath, fileName } = option;
         if (!path) return;
-        return new Promise((resolve) => {
-            const file = fs.createWriteStream(`${savePath}/${fileName}`);
-            const res = request(path).pipe(file);
-            res.on("finish", resolve);
+        return new Promise((resolve, reject) => {
+            try {
+                const file = fs.createWriteStream(`${savePath}/${fileName}`);
+                const res = request(path).pipe(file);
+                res.on("finish", resolve);
+                res.on("error", reject);
+            } catch (err) {
+                reject(err);
+            }
         });
     },
     uncompress(zipFile, destFolder) {
@@ -80,5 +85,23 @@ module.exports = {
         // }
 
         zip.extractAllTo(destFolder, true);
+    },
+
+    confirm_port(port) {
+        return new Promise((resolve, reject) => {
+            function test() {
+                const serve = net.createServer().listen(port);
+                serve.addListener("listening", () => {
+                    serve.close();
+                    resolve(port);
+                });
+                serve.addListener("error", () => {
+                    port++;
+                    serve.close();
+                    test();
+                });
+            }
+            test();
+        });
     },
 };
