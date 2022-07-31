@@ -12,7 +12,6 @@
     "scripts": {
         "--- 安装请运行 i 脚本 npm run i": "",
         "i": "npm i && esno scripts/install.ts && npm run link",
-        "install": "npm run i",
         "link": "esno scripts/cliLink",
         "--- dev/build 命令需要带上 运行的项目的文件夹名 比如 cli 就需要 npm run dev cli": "",
         "--- 请使用  npm run / yarn run / pnpm run 运行脚本 ": "",
