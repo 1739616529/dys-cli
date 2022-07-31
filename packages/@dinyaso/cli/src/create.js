@@ -57,7 +57,7 @@ async function create_tmpl() {
     // await online_test();
     inquirer.prompt(prompt_lsit).then(async (res) => {
         // 获取  项目仓库信息
-        const { path, fileName, storm_name } = get_github_storm(res);
+        const { path, fileName, zip_dir_name } = get_github_storm(res);
         // 创建目录
         ensureDirSync(tmpDir);
         const file_path = join(tmpDir, fileName);
@@ -72,7 +72,17 @@ async function create_tmpl() {
         uncompress(file_path, cwd);
 
         // 重命名
-        mv(storm_name, res.name);
+        mv(zip_dir_name, res.name);
+
+        console.log(`
+${chalk.green("项目创建完成✨✨✨. (Project creation is completed)")}
+
+
+    cd ${res.name}
+    npm install
+
+
+`);
     });
 }
 
