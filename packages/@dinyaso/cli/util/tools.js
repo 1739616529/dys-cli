@@ -52,11 +52,12 @@ module.exports = {
         const storm_name = github.gitStorm[option.frame];
         const barch = github[option.typescript ? "ts" : "js"];
         const file_name = `${storm_name}-${barch}.zip`;
+        const zip_dir_name = `${storm_name}-${barch}`;
         const path = `${github.baseUrl}/${storm_name}/archive/refs/heads/${barch}.zip`;
 
         return {
             path,
-            storm_name,
+            zip_dir_name,
             fileName: file_name,
         };
     },
@@ -103,5 +104,20 @@ module.exports = {
             }
             test();
         });
+    },
+
+    git_local_ip() {
+        let local_ip;
+        const { WLAN, 以太网 } = require("os").networkInterfaces();
+        const ips = WLAN || 以太网;
+        if (ips) {
+            ips.some((v) => {
+                if (v.family === "IPv4") {
+                    local_ip = v.address;
+                    return true;
+                }
+            });
+        }
+        return local_ip;
     },
 };
