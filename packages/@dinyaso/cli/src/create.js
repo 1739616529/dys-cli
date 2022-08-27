@@ -63,10 +63,9 @@ async function create_tmpl() {
         const file_path = join(tmpDir, fileName);
 
         // 如果不存在 则下载
-        if (!ensureFileSync(file_path))
-            await download_file({ path, savePath: tmpDir, fileName }).catch((err) => {
-                console.log(chalk.red("下载失败 请手动下载 :" + path));
-            });
+        await download_file({ path, savePath: tmpDir, fileName }).catch((err) => {
+            console.log(chalk.red("下载失败 请手动下载 :" + path));
+        });
 
         // 解压 到当前目录
         uncompress(file_path, cwd);

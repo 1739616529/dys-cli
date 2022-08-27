@@ -4,6 +4,7 @@ const request = require("request");
 const config = require("../dysconfig");
 const admZip = require("adm-zip");
 const net = require("net");
+const download = require("download");
 module.exports = {
     dir_ok(path) {
         try {
@@ -65,12 +66,12 @@ module.exports = {
     download_file(option) {
         const { path, savePath, fileName } = option;
         if (!path) return;
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             try {
                 const file = fs.createWriteStream(`${savePath}/${fileName}`);
-                const res = request(path).pipe(file);
-                res.on("finish", resolve);
-                res.on("error", reject);
+                const res = await download(path);
+                file.write(res);
+                resolve();
             } catch (err) {
                 reject(err);
             }
